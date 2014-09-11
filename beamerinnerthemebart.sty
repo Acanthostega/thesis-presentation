@@ -1,0 +1,34 @@
+\mode<presentation>
+
+% fading styles for the title page
+\tikzfading[name=titlepage, right color=transparent!0, left color=transparent!30]
+
+% redefine the template for the background
+\setbeamertemplate{background}{%
+
+    % only for the first page (the titlepage)
+    \ifnum\thepage<2\relax%
+
+        % draw the background image with a fading style
+        % image always positioned with their center
+        \begin{tikzpicture}[overlay, remember picture]
+            \fill[black] (0,0) rectangle (\paperwidth,-\paperheight);
+            \node[scope fading=titlepage] at ($
+                (current page.north west) + (0.5\paperwidth, -0.5\paperheight)
+            $) {%
+                \includegraphics[width=\paperwidth]{%
+                    andromede2.jpg%
+                }
+            };
+        \end{tikzpicture}
+    \fi
+}
+
+% Items
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+
+% style for items in itemize
+\setbeamertemplate{itemize item}[triangle]
+
+\mode<all>

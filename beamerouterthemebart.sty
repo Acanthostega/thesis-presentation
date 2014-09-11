@@ -1,0 +1,245 @@
+\mode<presentation>
+
+% fading definitions for the image in the header for frametitles
+\tikzfading[name=header, top color=transparent!0, bottom color=transparent!70]
+
+% the color for subtitles
+\definecolor{subtitle}{RGB}{166,27,114}
+
+% size of the frametitle in the x and y directions
+\newlength{\thechaptertitlelabelx}
+\newlength{\thechaptertitlelabely}
+\setlength\thechaptertitlelabelx{15pt}
+\setlength\thechaptertitlelabely{10pt}
+
+% space between the frametitle icon and the left of the slide
+\newlength\thechaptertitleblank%
+\setlength\thechaptertitleblank{3cm}
+
+% total size of the frametitle
+\newlength\thechapterlength%
+\setlength\thechapterlength{\paperwidth}
+\addtolength\thechapterlength{-\thechaptertitleblank}
+
+% size of the frame subtitle icon
+\newlength\thebartframesubtitlex%
+
+% margin of the frame subtitle icon
+\newlength\thebartframesubtitlemarginx%
+\setlength\thebartframesubtitlemarginx{0.5cm}
+
+% padding of the icon for the frame subtitle along x
+\newlength\thebartframesubtitlepaddingx%
+\setlength\thebartframesubtitlepaddingx{5pt}
+
+% the style for the icon of the frame title
+\tikzset{bartchaptertitle/.style={%
+    rectangle,
+    draw,
+    color=white,
+    fill=white,
+    opacity=0.3,
+    rounded corners=0.5cm
+}}
+
+% the style for the frame subtitle
+\tikzset{bartframesubtitle/.style={%
+    rectangle,
+    draw,
+    color=yellow,
+    fill=yellow,
+    opacity=0.7,
+    rounded corners=0.75cm
+}}
+
+% command to change the image used in the frametitle
+\newcommand{\thechapterimage}{}
+\newcommand{\bartchapterimage}[1]{\renewcommand*{\thechapterimage}{#1}}
+
+% command for changing the font style in the frametitle
+\newcommand{\thechapterheadfont}{\fontfamily{ugq}\fontsize{15pt}{30pt}\selectfont}
+\newcommand{\bartchapterheadfont}[1]{\renewcommand*{\thechapterheadfont}{#1}}
+
+% command to change the style of the frametitle
+\newcommand{\thechapterstyle}{\color{red!60!black}}
+\newcommand{\bartchapterstyle}[1]{\renewcommand*{\thechapterstyle}{#1}}
+
+% command to change the style of the frame subtitle
+\newcommand{\theframesubtitlestyle}{\small}
+\newcommand{\bartframesubtitlestyle}[1]{\renewcommand*{\theframesubtitlestyle}{#1}}
+
+% redefine the template for the frametitle
+\defbeamertemplate*{frametitle}{bart}[1][]
+{%
+    % for frametitle with height hard coded because images are too
+    \begin{beamercolorbox}[ht=2cm]{frametitle}
+
+        % the complete frametitle as displayed
+        \def\thebartchapterlabel{\thechapterheadfont\insertframesubtitle}
+
+        % keep the size of the subtitle as displayed
+        \def\thebartframesubtitle\theframesubtitlestyle\insertframesubtitle%
+        \settowidth\thebartframesubtitlex{\thebartframesubtitle}
+
+        % draw the style for the frametitle with tikz
+        \begin{tikzpicture}[overlay, remember picture]
+
+            % a node to put the image (it places the center of the image
+            % thus the offset)
+            \node[scope fading=header] at ($
+                (current page.north west) + (0.5\paperwidth, -1cm)
+            $) {%
+                \includegraphics[height=2cm, width=\paperwidth]{%
+                    \thechapterimage%
+                }
+            };
+
+            % frame title only on the scope
+            \begin{scope}
+                % for the text of the frame title
+                \node[
+                    right=\thechaptertitleblank,
+                    inner ysep=\thechaptertitlelabely,
+                    inner xsep=\thechaptertitlelabelx,
+                    bartchaptertitle
+                ] at ($ (current page.north west) + (0cm,-1cm)$)
+                {%
+                        \thechapterheadfont\phantom{%
+                            \begin{minipage}{\thechapterlength}
+                                {\thechapterheadfont\thechapterstyle\insertframetitle}
+                            \end{minipage}
+                        }
+                        \hspace{\thechapterlength}\null
+                };
+                \node[
+                    right=\thechaptertitleblank,
+                    inner ysep=\thechaptertitlelabely,
+                    inner xsep=\thechaptertitlelabelx,
+                ] at ($ (current page.north west) + (0cm,-1cm)$)
+                {%
+                    \begin{minipage}{\thechapterlength}
+                        {\thechapterheadfont\thechapterstyle\insertframetitle}
+                    \end{minipage}
+                };
+
+            \end{scope}
+
+            % for the frame subtitle
+            \begin{scope}
+                \ifempty{\insertframesubtitle}{}{%
+                    \node[
+                        fill=subtitle,
+                        opacity=1,
+                        drop shadow,
+                        rounded corners=0.3cm,
+                        inner sep=\thebartframesubtitlepaddingx,
+                        font=\theframesubtitlestyle
+                    ] at ($
+                    (current page.north west)+
+                    (0.5\thebartframesubtitlex+\thebartframesubtitlepaddingx+
+                        \thebartframesubtitlemarginx, -2.cm)
+                    $) {{\color{white}\insertframesubtitle}};
+                }%
+            \end{scope}
+        \end{tikzpicture}
+    \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for the footline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% the height of the footline
+\newlength\bartfootlineheight%
+\setlength\bartfootlineheight{0.75cm}
+
+% the width of the informations on the footline (paperwidth -2cm for images)
+\newlength\bartfootlineinfowidth%
+\setlength\bartfootlineinfowidth{\paperwidth}
+\addtolength\bartfootlineinfowidth{-2cm}
+
+% command to change the image at the lower right corner (use a thumbnail)
+\newcommand{\thethumbnail}{}
+\newcommand{\bartthumb}[1]{\renewcommand*{\thethumbnail}{#1}}
+
+% change the style of the footline
+\defbeamertemplate*{footline}{bart}
+{%
+
+    % color of the text for the sections and subsections for the navigation
+    \setbeamercolor{section in head/foot}{fg=red}
+    \setbeamercolor{subsection in head/foot}{fg=green!60!black}
+
+    % now draw the bar of the footline and others
+    \begin{tikzpicture}[overlay, remember picture]
+
+        % draw the bar
+        \begin{scope}
+
+            % do not draw outsize the rectangular region
+            \clip (current page.south west) rectangle ($
+            (current page.south east) + (0., \bartfootlineheight)
+            $);
+
+            % fill the rectangular region to draw the bar
+            \fill[black] (current page.south west) rectangle ($
+            (current page.south east) + (0., \bartfootlineheight)
+            $);
+
+            % insert the navigation with the sections
+            \node[color=white, text width=\bartfootlineinfowidth] at ($
+            (current page.south west) + (0.5\bartfootlineinfowidth, 0.75\bartfootlineheight)
+            $) {\color{white}\insertsectionnavigationhorizontal{\bartfootlineinfowidth}{}{}};
+
+            % insert the navigation of the subsections of the current section
+            \node[color=white, text width=\bartfootlineinfowidth] at ($
+            (current page.south west) + (0.5\bartfootlineinfowidth, 0.25\bartfootlineheight)
+            $) {\color{white}\insertsubsectionnavigationhorizontal{\bartfootlineinfowidth}{}{}};
+        \end{scope}
+
+        % draw the corner image
+        \begin{scope}
+
+            % loop over centers of the different circles, their radius and opacity
+            \foreach \x/\y/\r/\opacity in {%
+                1.5cm/1.75cm/0.32cm/0.2,
+                1.06cm/1.06cm/0.75cm/0.6,
+                0cm/0cm/1.5cm/1
+            }{%
+                % draw only in the scope
+                \begin{scope}
+
+                    % draw only in the region of the circle
+                    \clip ($
+                    (current page.north west) + (\paperwidth - \x, -\paperheight + \y)
+                    $) circle (\r);
+
+                    % add the image with the good opacity
+                    \node[opacity=\opacity] at ($
+                    (current page.north west) + (\paperwidth - 1cm, -\paperheight + 1cm)
+                    $) {%
+                        \includegraphics[height=2.2cm, width=2.2cm]{\thethumbnail}
+                    };
+
+                    % draw lines to make it good
+                    \draw[white] ($
+                    (current page.north west) + (\paperwidth - \x, -\paperheight + \y)
+                    $) circle (\r);
+                \end{scope}
+            };
+        \end{scope}
+    \end{tikzpicture}
+}
+
+
+% style for the title of a block
+\setbeamercolor{block title}{fg=white,bg=orange!20!black}
+
+% same for its body
+\setbeamercolor{block body}{fg=black,bg=olive!50}
+
+% same for previous block but for alert ones
+\setbeamercolor{block title alerted}{fg=white,bg=red!50!black}
+\setbeamercolor{block body alerted}{fg=black,bg=red!50}
+
+\mode<all>
