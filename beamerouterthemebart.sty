@@ -74,11 +74,8 @@
     % for frametitle with height hard coded because images are too
     \begin{beamercolorbox}[ht=2cm]{frametitle}
 
-        % the complete frametitle as displayed
-        \def\thebartchapterlabel{\thechapterheadfont\insertframesubtitle}
-
         % keep the size of the subtitle as displayed
-        \def\thebartframesubtitle\theframesubtitlestyle\insertframesubtitle%
+        \def\thebartframesubtitle{\theframesubtitlestyle\insertframesubtitle}
         \settowidth\thebartframesubtitlex{\thebartframesubtitle}
 
         % draw the style for the frametitle with tikz
@@ -123,7 +120,6 @@
                 };
 
             \end{scope}
-
             % for the frame subtitle
             \begin{scope}
                 \ifempty{\insertframesubtitle}{}{%
@@ -138,7 +134,7 @@
                     (current page.north west)+
                     (0.5\thebartframesubtitlex+\thebartframesubtitlepaddingx+
                         \thebartframesubtitlemarginx, -2.cm)
-                    $) {{\color{white}\insertframesubtitle}};
+                    $) {{\color{white}\thebartframesubtitle}};
                 }%
             \end{scope}
         \end{tikzpicture}
