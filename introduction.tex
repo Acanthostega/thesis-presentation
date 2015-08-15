@@ -6,74 +6,29 @@
 
 \begin{frame}
     \frametitle{Introduction}
-
-    \centering
-    \begin{columns}
-        \centering
-        \begin{column}{0.5\textwidth}
-            \begin{minipage}[c][0.6\textheight][c]{\linewidth}
-                \begin{block}{Galaxy groups?}
-                    \begin{enumerate}
-                        \item<1-> Galaxies reside in groups
-                        \item<2-> Result of cosmological formation and baryon
-                            physics
-                        \item<3-> Still some problems in the scenario
-                    \end{enumerate}
-                \end{block}
-            \end{minipage}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \begin{minipage}[c][0.6\textheight][c]{\linewidth}
-                \smoothpic[width=\linewidth]{cluster.jpg}
-            \end{minipage}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Introduction}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{block}{Galaxy formation}
                 \begin{enumerate}
                     \item<1-> Dark matter halos grow from initial perturbations
                         in matter density
-                    \item<2-> Gas fall into potential well by cooling
+                    \item<2-> Gas infall into potential well by cooling
                     \item<3-> Heating processes avoid the formation of too
-                        massive galaxies
+                        massive galaxies (virial shock, photo-ionisation,
+                        feedback, etc)
                 \end{enumerate}
             \end{block}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{minipage}[c][0.6\textheight][c]{\linewidth}
-                \only<1>{\includegraphics[width=\linewidth]{cmb.jpg}}
-                \only<2>{\smoothpic[width=\linewidth]{structures.jpg}}
-                \only<3>{\smoothpic[width=\linewidth]{galaxy.jpg}}
-            \end{minipage}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Introduction}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{block}{Environment modulation}
-                \begin{enumerate}
-                    \item<1-> Galaxy properties modulated by both local and
-                        global environments (morphology, colours, etc)
-                    \item<2-> \citet{Peng+11}: specific star formation rate
-                        anti-correlates with density for high stellar mass
-                        galaxies
-                    \item<3-> Consequence of bad quantification of the
-                        environment?
-                \end{enumerate}
-            \end{block}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \begin{minipage}[c][0.6\textheight][c]{\linewidth}
-                \only<1>{\includegraphics[width=\linewidth]{cmb.jpg}}
-                \only<2>{\smoothpic[width=\linewidth]{structures.jpg}}
+                \only<1>{%
+                    \includegraphics[width=\linewidth]{cmb.jpg}\\
+                    \small Planck
+                }
+                \only<2>{%
+                    \smoothpic[width=\linewidth]{structures.jpg}\\
+                    \small Millennium
+                }
                 \only<3>{\smoothpic[width=\linewidth]{galaxy.jpg}}
             \end{minipage}
         \end{column}
@@ -89,9 +44,9 @@
         \begin{column}{0.5\textwidth}
             \begin{block}{}
                 \begin{itemize}
-                    \item<1-> Morphologically transform galaxies into
+                    \item Morphologically transform galaxies into
                         spheroidal
-                    \item<2-> Bursts of star formation
+                    \item Bursts of star formation
                 \end{itemize}
             \end{block}
         \end{column}
@@ -108,9 +63,9 @@
         \begin{column}{0.5\textwidth}
             \begin{block}{}
                 \begin{itemize}
-                    \item<1-> Prevents outer gas to be accreted onto galaxy
-                        disk
-                    \item<2-> Busts of star formation
+                    \item Encounters between galaxies
+                    \item Cluster potential
+                    \item Bursts of star formation
                 \end{itemize}
             \end{block}
         \end{column}
@@ -127,8 +82,8 @@
         \begin{column}{0.5\textwidth}
             \begin{block}{}
                 \begin{itemize}
-                    \item<1-> Change galaxy morphologies
-                    \item<2-> Bursts of star formation
+                    \item Change galaxy morphologies
+                    \item Bursts of star formation
                 \end{itemize}
             \end{block}
         \end{column}
@@ -145,14 +100,40 @@
         \begin{column}{0.5\textwidth}
             \begin{block}{}
                 \begin{itemize}
-                    \item<1-> Intra-cluster gas pressure remove gas with low
+                    \item Intra-cluster gas pressure remove gas with low
                         binding to galaxy
-                    \item<2-> Quenching of star formation
+                    \item Quenching of star formation
                 \end{itemize}
             \end{block}
         \end{column}
         \begin{column}{0.5\textwidth}
             \smoothpic[width=\linewidth]{rampressure.jpg}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Introduction}
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \begin{block}{Environment modulation}
+                \begin{enumerate}
+                    \item<1-> \citet{Peng+10}: independence of specific star
+                        formation rate (SSFR) with density for high stellar
+                        masses
+                    \item<2-> \citet{vonderLinden+10}: galaxy properties
+                        modulated by both local and global environments
+                        (morphology, colours, etc)
+                    \item<3-> Consequence of bad quantification of the
+                        environment?
+                \end{enumerate}
+            \end{block}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{minipage}[c][0.6\textheight][c]{\linewidth}
+                \centering
+                \includegraphics[height=0.6\textheight]{peng.png}
+            \end{minipage}
         \end{column}
     \end{columns}
 \end{frame}
@@ -171,67 +152,30 @@
 \tikzset{highlighton3/.style={}}
 \tikzset{highlighton4/.style={}}
 \begin{frame}
-    % \frametitle{Grouping algorithms}
     \begin{minipage}[c][0.29\textheight][c]{\linewidth}
+        \centering
         \begin{timeline}
             \tikzset<1>{highlighton1/.style={highlight}}
             \tikzset<2>{highlighton2/.style={highlight}}
             \tikzset<3>{highlighton3/.style={highlight}}
             \tikzset<4>{highlighton4/.style={highlight}}
-            \Task[2002]{Marinoni et al.}{highlighton1}
-            \Task[2005]{Yang et al.}{highlighton2}
-            \Task[2012]{Dominguez-Romero et al.}{highlighton3}
-            \Task[2012]{Munoz-Cuartas et al.}{highlighton4}
+            \Task[1961]{\citeauthor{Zwicky+61}}{highlighton1}
+            \Task[1976]{\citeauthor{Turner+76}}{highlighton2}
+            \Task[2002]{\citeauthor{Marinoni+02}}{highlighton2}
+            \Task[2005]{\citeauthor{Yang+07}}{highlighton3}
+            \Task[2012]{\citeauthor{DominguezRomero+12}}{highlighton4}
         \end{timeline}
     \end{minipage}
     \begin{minipage}[c][0.69\textheight][c]{\linewidth}
-        \only<1>{%
-            \begin{block}{Marinoni et al. (2002)}
-                \begin{minipage}{0.69\linewidth}
-                    \begin{enumerate}
-                        \item Tessellation of redshift space to estimate
-                            over-densities
-                    \end{enumerate}
-                \end{minipage}
-                \begin{minipage}{0.29\linewidth}
-                    \includegraphics[width=\linewidth]{voronoi.pdf}
-                \end{minipage}
-            \end{block}
-        }
-        \only<2>{%
-            \begin{minipage}{0.69\linewidth}
-                \begin{block}{Yang et al. (2005)}
-                    \begin{enumerate}
-                        \item Phase space density contrast used as threshold
-                            for galaxy assignation to groups
-                        \item Iterations for convergence in membership and
-                            dynamical mass to light ratio
-                        \item Assumes constant interlopers density
-                    \end{enumerate}
-                \end{block}
-            \end{minipage}
-        }
-        \only<3>{%
-            \begin{minipage}{0.69\linewidth}
-                \begin{block}{Dominguez Romero et al. (2012)}
-                    \begin{enumerate}
-                        \item Same as Yang et al.\ but compute responsibilities
-                            to belong to a group
-                        \item Estimate potential centers by decreasing galaxy
-                            stellar masses
-                    \end{enumerate}
-                \end{block}
-            \end{minipage}
-        }
-        \only<4>{%
-            \begin{minipage}{0.69\linewidth}
-                \begin{block}{Munoz Cuartas et al. (2012)}
-                    \begin{enumerate}
-                        \item Kind of FoF applied to halos
-                    \end{enumerate}
-                \end{block}
-            \end{minipage}
-        }
+        \centering
+        \begin{block}{Four categories of galaxy group algorithms}
+            \begin{enumerate}
+                \item<1> Visual selection based on over-density
+                \item<2> Geometrical algorithms
+                \item<3> Bayesian algorithms
+                \item<4> Probabilistic algorithms
+            \end{enumerate}
+        \end{block}
     \end{minipage}
 \end{frame}
 

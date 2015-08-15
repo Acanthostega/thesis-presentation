@@ -1,7 +1,7 @@
 \usetikzlibrary{chains,shapes.arrows,fit}
 \usetikzlibrary{shadows.blur}
 
-\definecolor{arrowcolor}{RGB}{201,216,232}% color for the arrow filling
+\definecolor{arrowcolor}{RGB}{201,216,255}% color for the arrow filling
 \definecolor{circlecolor}{RGB}{79,129,189}% color for the inner circles filling
 \colorlet{textcolor}{white}% color for the text inside the circles
 \colorlet{bordercolor}{white}% color for the outer border of circles
@@ -14,7 +14,7 @@
 \newlength\taskwidth% width of the box for the task description
 \newlength\taskvsep% vertical distance between the task description and arrow
 
-\setlength\taskwidth{2.5cm}
+\setlength\taskwidth{2cm}
 \setlength\taskvsep{17pt}
 
 \def\taskpos{}
@@ -74,6 +74,6 @@ on grid
 \end{pgfonlayer}
 }
 
-\newenvironment{timeline}[1][node distance=.75\taskwidth]
-  {\par\noindent\setcounter{task}{0}\begin{tikzpicture}[start chain,#1]}
-  {\drawarrow\end{tikzpicture}\par}
+\newenvironment{timeline}[1][]
+  {\setcounter{task}{0}\begin{tikzpicture}[start chain,node distance=.75\taskwidth, #1]}
+  {\drawarrow\end{tikzpicture}}

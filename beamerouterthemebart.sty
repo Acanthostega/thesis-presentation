@@ -198,8 +198,8 @@
 
             % loop over centers of the different circles, their radius and opacity
             \foreach \x/\y/\r/\opacity in {%
-                1.5cm/1.75cm/0.32cm/0.2,
-                1.06cm/1.06cm/0.75cm/0.6,
+                0cm/2.25cm/0.32cm/0.2,
+                0cm/1.5cm/0.75cm/0.6,
                 0cm/0cm/1.5cm/1
             }{%
                 % draw only in the scope
@@ -212,9 +212,9 @@
 
                     % add the image with the good opacity
                     \node[opacity=\opacity] at ($
-                    (current page.north west) + (\paperwidth - 1cm, -\paperheight + 1cm)
+                    (current page.north west) + (\paperwidth - 1.3cm, -\paperheight + 1.3cm)
                     $) {%
-                        \includegraphics[height=2.2cm, width=2.2cm]{\thethumbnail}
+                        \includegraphics[height=2.6cm, width=2.6cm]{\thethumbnail}
                     };
 
                     % draw lines to make it good

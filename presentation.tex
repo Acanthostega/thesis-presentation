@@ -9,6 +9,15 @@
 \usepackage{smoothpic}
 \usepackage{ragged2e}
 \usepackage{relsize}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+% \usepackage[
+    % texcoord,
+    % grid,
+    % gridunit=mm,
+    % gridcolor=red!10,
+    % subgridcolor=green!10,
+% ]{eso-pic}
 
 \usetheme{bart}
 
@@ -31,7 +40,17 @@ Supervisor: Gary MAMON (IAP)
 \bartchapterimage{heic0206b_small.jpg}
 \bartthumb{thumbs/heic0206b.png}
 
+%##################################################
+% Table of contents
+%##################################################
+\AtBeginSection{%
+    \begin{frame}
+        \tableofcontents[currentsection, hideothersubsections]
+    \end{frame}
+}
+
 \begin{document}
+
 
 %##################################################
 % title page
@@ -40,17 +59,12 @@ Supervisor: Gary MAMON (IAP)
     \titlepage%
 \end{frame}
 
-%##################################################
-% Table of contents
-%##################################################
-\begin{frame}
-    \tableofcontents%
-\end{frame}
-
 \input{introduction}
 \input{mock}
 \input{fof}
 \input{maggie}
+\input{sdss}
+\input{conclusions}
 
 \bibliographystyle{unsrtnat}
 \nobibliography{references}
